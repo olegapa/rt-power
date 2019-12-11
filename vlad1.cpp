@@ -6,9 +6,8 @@ void ReverseStr(char** str, int len);
 int main()
 {
     int key_len = 0, str_len = 0;
-    char* key = NULL, *str = NULL;
+    char* key = NULL, *str = NULL, *ptr = NULL;
     int count = 0;
-    char* ptr = NULL;
 
     scanf("%d ", &key_len);
 
@@ -17,6 +16,8 @@ int main()
         scanf("%c", &key[i]);
 
     scanf(" %d ", &str_len);
+
+//    printf("\nj%d", str_len);
 
     str = (char*) calloc(str_len, sizeof(char));
 
@@ -31,30 +32,34 @@ int main()
 
         if(count == key_len)
         {
+            ptr = str + i - count;
             ReverseStr(&ptr, count);
             count = 0;
         }
 
-        printf("%s\n", str);
 
-        return 0;
 
     }
 
 
+    printf("%s\n", str);
 
+    return 0;
 
 
 }
 
 void ReverseStr(char** str, int len)
 {
-    for(int i = 0; i <= len/2; i++)
-    {
-        char symb = *str[i];
+    printf("%d  %s", len, *str);
 
-        *str[i] = *str[len-i];
-        *str[len-i] = symb;
+    for(int i = 1; i <= len/2; i++)
+    {
+        printf("\ni = %d, len = %d, str[i] = %c, str[len-i-1] = %c", i, len, (*str)[i], (*str)[len-i-1]);
+
+        char symb = (*str)[i];
+        (*str)[i] = (*str)[len-i+1];
+        (*str)[len-i+1] = symb;
     }
 
 
